@@ -4,13 +4,17 @@
 <head>
   <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/my_style.css">
+  <!--Font Awsome Icons-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
   <title>Restaurant Reviews</title>
 </head>
 
 <body>
   <header>
     <nav>
-      <h1><a href="/">Restaurant Reviews</a></h1>
+      <h1 id="main_heading"><a href="/">Restaurant Reviews</a></h1>
     </nav>
   </header>
 
@@ -20,7 +24,10 @@
     </section>
     <section>
       <div class="filter-options">
-        <h2>Filter Results</h2>
+        <h2>
+          <i class="fas fa-filter" id="filter-icon"></i>
+          Filter Results
+        </h2>
         <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
           <option value="all">All Neighborhoods</option>
         </select>
@@ -34,7 +41,8 @@
 
   <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
   <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places&callback=initMap"></script>
+  <!--Loading Google Map Asynchronously-->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK4MvTMepWBj5LXL1ZsDReMxMCYJQHRVk&libraries=places&callback=initMap"></script>
 
 
   <footer id="footer">
