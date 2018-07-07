@@ -55,3 +55,53 @@
 #restaurants-list li a:hover{
   background-color: darkorange;
 }
+/*Writing css for restaurant.html page*/
+.inside #footer{
+    width: calc(100% - 50px);   /*50px is subtracted since its the amount of padding we are giving to it*/
+}
+.inside #restaurant-container , .inside #reviews-container{
+    width: calc(50% - 40px); /*40px is subtracted since that's the amount of padding we are giving it */
+}
+
+.inside #restaurant-name{
+    margin-bottom: 10px;
+}
+.inside #restaurant-cuisine{
+    padding-top: 4px;
+}
+.inside #restaurant-address{
+    font-weight: bold;
+}
+.inside #reviews-container #reviews-list li{
+    box-shadow: 0px 3px 15px #666666;
+    border-top-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+.inside #reviews-container #reviews-list li {
+    padding: 0;
+}
+.inside #reviews-container #reviews-list li .intro{
+    background-color: #333;
+    padding: 10px;
+}
+.inside #reviews-container #reviews-list li .person-name{
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 0;
+    font-size: 14pt;
+}
+.inside #reviews-container #reviews-list li .date-of-review {
+    color: #BDBDBD;
+    margin: 0;
+}
+.inside #reviews-container #reviews-list li .review-rating {
+    margin-top: 20px;
+    margin-bottom: 0;
+    font-size: 16pt;
+    padding-left: 10px;
+}
+.inside #reviews-container #reviews-list li .review-comment {
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 14px;
+}

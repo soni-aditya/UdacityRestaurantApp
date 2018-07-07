@@ -113,24 +113,51 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
 }
 
 /**
+ * Create Rating Html
+ */
+createRatingHtml = (rating) =>{
+  let innerHtmlContent = '';
+  for(let i=1 ; i<=rating ;i++){
+    innerHtmlContent = innerHtmlContent + '<i class="fas fa-star"></i>';
+  }
+  if(rating < 5){
+      const remaining = 5-rating;
+      for(let i=1 ; i<=remaining ;i++){
+          innerHtmlContent = innerHtmlContent + '<i class="far fa-star"></i>';
+      }
+  }
+  return innerHtmlContent;
+}
+/**
  * Create review HTML and add it to the webpage.
  */
 createReviewHTML = (review) => {
   const li = document.createElement('li');
+
+  const intro_div = document.createElement('div');
+  intro_div.className = 'intro';
+
   const name = document.createElement('p');
   name.innerHTML = review.name;
-  li.appendChild(name);
+  name.className = 'person-name';
+  // li.appendChild(name);
 
   const date = document.createElement('p');
   date.innerHTML = review.date;
-  li.appendChild(date);
+  date.className = 'date-of-review';
+  // li.appendChild(date);
+  intro_div.appendChild(name);
+  intro_div.appendChild(date);
+  li.appendChild(intro_div);
 
   const rating = document.createElement('p');
-  rating.innerHTML = `Rating: ${review.rating}`;
+  rating.innerHTML = createRatingHtml(review.rating);
+  rating.className = 'review-rating';
   li.appendChild(rating);
 
   const comments = document.createElement('p');
   comments.innerHTML = review.comments;
+  comments.className = 'review-comment';
   li.appendChild(comments);
 
   return li;
