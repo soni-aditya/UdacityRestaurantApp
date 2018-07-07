@@ -2,6 +2,8 @@
 <html>
 
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--Importing the CSS-->
   <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/my_style.css">
@@ -26,7 +28,7 @@
       <div class="filter-options">
         <h2>
           <i class="fas fa-filter" id="filter-icon"></i>
-          Filter Results
+          <span id="filter-text">Filter Results</span>
         </h2>
         <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
           <option value="all">All Neighborhoods</option>

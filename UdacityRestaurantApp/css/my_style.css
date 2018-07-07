@@ -1,9 +1,33 @@
+/*Media Queries*/
+@media screen and (max-width: 799px){
+    #filter-text{
+        display: none;
+    }
+}
+@media screen and (max-width: 449px){
+    .filter-options h2{
+        display: none;
+    }
+}
+@media screen and (max-width: 370px){
+    .filter-options {
+        height: 120px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .filter-options select{
+        width: 100%;
+    }
+}
+/*CSS for general content*/
 #main_heading{
     padding-top: 25px;
 }
+#main_heading a:hover{
+    color: orange;
+}
 .filter-options{
     display: flex;
-    /*flex-wrap: wrap;*/
 }
 #filter-icon{
     margin-right: 5px;
@@ -15,7 +39,8 @@
 }
 #restaurants-list li{
     padding: 0 0 15px;
-    box-shadow: 0px 5px 10px #666666;
+    box-shadow: 0px 3px 15px #666666;
+    border-radius: 5px;
 }
 #restaurants-list li a{
     max-width: 200px;
