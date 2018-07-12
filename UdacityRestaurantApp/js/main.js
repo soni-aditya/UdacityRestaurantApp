@@ -14,8 +14,10 @@ if('serviceWorker' in navigator){
             console.log("Service Worker Registeration");
         })
         .catch(function (err) {
-            console.log("Service Worker Register" ,err);
+            console.log("Service Worker Registion Error Code :" ,err);
         })
+}else {
+    console.log('Service Workers not supported')
 }
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
