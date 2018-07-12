@@ -16,10 +16,8 @@ let cacheFiles = [
     './img/10.jpg',
     './js/dbhelper.js',
     './js/main.js',
-    // 'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
-    // 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAK4MvTMepWBj5LXL1ZsDReMxMCYJQHRVk&libraries=places&callback=initMap',
-    // 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700',
     '/data/restaurants.json',
+    'https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxK.woff2'
 ];
 
 self.addEventListener('install',function (e) {

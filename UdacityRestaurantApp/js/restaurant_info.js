@@ -1,6 +1,22 @@
 let restaurant;
 var map;
 
+/*
+Adding a service worker if not present
+ */
+if('serviceWorker' in navigator){
+    navigator.serviceWorker
+        .register('./restaurant-review-sw.js' , { scope : '/' })
+        .then(function (registration) {
+            // console.log("Service Worker Registeration",registration);
+            console.log("Service Worker Registeration");
+        })
+        .catch(function (err) {
+            console.log("Service Worker Registion Error Code :" ,err);
+        })
+}else {
+    console.log('Service Workers not supported')
+}
 /**
  * Initialize Google map, called from HTML.
  */

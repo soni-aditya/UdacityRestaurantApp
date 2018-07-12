@@ -8,7 +8,7 @@ Adding a service worker if not present
  */
 if('serviceWorker' in navigator){
     navigator.serviceWorker
-        .register('./service-worker.js' , { scope : './' })
+        .register('./service-worker.js' , { scope : '/' })
         .then(function (registration) {
             // console.log("Service Worker Registeration",registration);
             console.log("Service Worker Registeration");
