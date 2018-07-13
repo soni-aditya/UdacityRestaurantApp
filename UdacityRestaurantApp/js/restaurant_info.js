@@ -132,7 +132,7 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
  * Create Rating Html
  */
 createRatingHtml = (rating) =>{
-  let innerHtmlContent = '<b>Ratings : <b>'+rating+'<br>';
+  let innerHtmlContent = '<b>Ratings : <b>'+rating+'/5<br>';
   for(let i=1 ; i<=rating ;i++){
     innerHtmlContent = innerHtmlContent + '<i class="fas fa-star"></i>';
   }
