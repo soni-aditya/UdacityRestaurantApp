@@ -45,11 +45,18 @@ Setting breakpoints for the restaurant review page
         max-width: 100%;
         height: 400px;
         order: 1;
-        margin-top: calc(-80px - 46px);
+        margin-top: calc(-80px - 46px + 51px);
         position: relative;
+    }
+    .inside #map{
+        height: 400px;
     }
     .inside #map-container div{
         position: relative;
+    }
+    .inside #map{
+        width: 100%;
+        max-width: 100%;
     }
     .inside #restaurant-container{
         order: 2;
@@ -152,4 +159,7 @@ Setting breakpoints for the restaurant review page
     margin-bottom: 20px;
     padding: 10px;
     font-size: 14px;
+}
+.inside .leaflet-control-attribution{
+    display: none;
 }
