@@ -17,7 +17,8 @@ let cacheFiles = [
     './js/dbhelper.js',
     './js/restaurant_info.js',
     '/data/restaurants.json',
-    'https://use.fontawesome.com/releases/v5.1.0/webfonts/fa-solid-900.woff2'
+    'https://unpkg.com/leaflet@1.3.1/dist/leaflet.css',
+    'https://unpkg.com/leaflet@1.3.1/dist/leaflet.js'
 ];
 
 self.addEventListener('install',function (e) {
@@ -47,8 +48,8 @@ self.addEventListener('activate',function (e) {
 });
 self.addEventListener('fetch', function(evt) {
     console.log('The service worker is serving the asset.');
-    evt.respondWith(fromCache(evt.request).catch(function () {
-        return fromNetwork(evt.request, 400);
+    evt.respondWith(fromNetwork(evt.request, 400).catch(function () {
+        return fromCache(evt.request);
     }));
 });
 

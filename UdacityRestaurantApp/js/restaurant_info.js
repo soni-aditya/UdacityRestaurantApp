@@ -1,6 +1,12 @@
 let restaurant;
-var map;
+var newMap;
 
+/**
+ * Initialize map as soon as the page is loaded.
+ */
+document.addEventListener('DOMContentLoaded', (event) => {  
+  initMap();
+});
 /*
 Adding a service worker if not present
  */
@@ -18,9 +24,34 @@ if('serviceWorker' in navigator){
     console.log('Service Workers not supported')
 }
 /**
- * Initialize Google map, called from HTML.
+ * Initialize leaflet map
  */
-window.initMap = () => {
+initMap = () => {
+  fetchRestaurantFromURL((error, restaurant) => {
+    if (error) { // Got an error!
+      console.error(error);
+    } else {      
+      self.newMap = L.map('map', {
+        center: [restaurant.latlng.lat, restaurant.latlng.lng],
+        zoom: 16,
+        scrollWheelZoom: false
+      });
+      L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}', {
+          // mapboxToken: '<your MAPBOX API KEY HERE>',
+        mapboxToken: 'pk.eyJ1IjoiYWRpdHlhMjM0IiwiYSI6ImNqams1b2tvdTBwNjgzd3M0ZnE5Y2F4MXUifQ.z-60z-exBnVdmCP1LrsB3w',
+        maxZoom: 18,
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+          '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+          'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        id: 'mapbox.streets'    
+      }).addTo(newMap);
+      fillBreadcrumb();
+      DBHelper.mapMarkerForRestaurant(self.restaurant, self.newMap);
+    }
+  });
+}  
+ 
+/* window.initMap = () => {
   fetchRestaurantFromURL((error, restaurant) => {
     if (error) { // Got an error!
       console.error(error);
@@ -34,7 +65,7 @@ window.initMap = () => {
       DBHelper.mapMarkerForRestaurant(self.restaurant, self.map);
     }
   });
-}
+} */
 
 /**
  * Get current restaurant from page URL.
@@ -65,25 +96,25 @@ fetchRestaurantFromURL = (callback) => {
  * Create restaurant HTML and add it to the webpage
  */
 fillRestaurantHTML = (restaurant = self.restaurant) => {
-  const name = document.getElementById('restaurant-name');
-  name.innerHTML = restaurant.name;
+    const name = document.getElementById('restaurant-name');
+    name.innerHTML = restaurant.name;
 
-  const address = document.getElementById('restaurant-address');
-  address.innerHTML = restaurant.address;
+    const address = document.getElementById('restaurant-address');
+    address.innerHTML = restaurant.address;
 
-  const image = document.getElementById('restaurant-img');
-  image.className = 'restaurant-img'
-  image.src = DBHelper.imageUrlForRestaurant(restaurant);
+    const image = document.getElementById('restaurant-img');
+    image.className = 'restaurant-img'
+    image.src = DBHelper.imageUrlForRestaurant(restaurant);
 
-  const cuisine = document.getElementById('restaurant-cuisine');
-  cuisine.innerHTML = restaurant.cuisine_type;
+    const cuisine = document.getElementById('restaurant-cuisine');
+    cuisine.innerHTML = restaurant.cuisine_type;
 
-  // fill operating hours
-  if (restaurant.operating_hours) {
-    fillRestaurantHoursHTML();
-  }
-  // fill reviews
-  fillReviewsHTML();
+    // fill operating hours
+    if (restaurant.operating_hours) {
+        fillRestaurantHoursHTML();
+    }
+    // fill reviews
+    fillReviewsHTML();
 }
 
 /**
@@ -132,51 +163,51 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
  * Create Rating Html
  */
 createRatingHtml = (rating) =>{
-  let innerHtmlContent = '<b>Ratings : <b>'+rating+'/5<br>';
-  for(let i=1 ; i<=rating ;i++){
-    innerHtmlContent = innerHtmlContent + '<i class="fas fa-star"></i>';
-  }
-  if(rating < 5){
-      const remaining = 5-rating;
-      for(let i=1 ; i<=remaining ;i++){
-          innerHtmlContent = innerHtmlContent + '<i class="far fa-star"></i>';
-      }
-  }
-  return innerHtmlContent;
+    let innerHtmlContent = '<b>Ratings : <b>'+rating+'/5<br>';
+    for(let i=1 ; i<=rating ;i++){
+        innerHtmlContent = innerHtmlContent + '<i class="fas fa-star"></i>';
+    }
+    if(rating < 5){
+        const remaining = 5-rating;
+        for(let i=1 ; i<=remaining ;i++){
+            innerHtmlContent = innerHtmlContent + '<i class="far fa-star"></i>';
+        }
+    }
+    return innerHtmlContent;
 }
 /**
  * Create review HTML and add it to the webpage.
  */
 createReviewHTML = (review) => {
-  const li = document.createElement('li');
+    const li = document.createElement('li');
 
-  const intro_div = document.createElement('div');
-  intro_div.className = 'intro';
+    const intro_div = document.createElement('div');
+    intro_div.className = 'intro';
 
-  const name = document.createElement('p');
-  name.innerHTML = review.name;
-  name.className = 'person-name';
-  // li.appendChild(name);
+    const name = document.createElement('p');
+    name.innerHTML = review.name;
+    name.className = 'person-name';
+    // li.appendChild(name);
 
-  const date = document.createElement('p');
-  date.innerHTML = review.date;
-  date.className = 'date-of-review';
-  // li.appendChild(date);
-  intro_div.appendChild(name);
-  intro_div.appendChild(date);
-  li.appendChild(intro_div);
+    const date = document.createElement('p');
+    date.innerHTML = review.date;
+    date.className = 'date-of-review';
+    // li.appendChild(date);
+    intro_div.appendChild(name);
+    intro_div.appendChild(date);
+    li.appendChild(intro_div);
 
-  const rating = document.createElement('p');
-  rating.innerHTML = createRatingHtml(review.rating);
-  rating.className = 'review-rating';
-  li.appendChild(rating);
+    const rating = document.createElement('p');
+    rating.innerHTML = createRatingHtml(review.rating);
+    rating.className = 'review-rating';
+    li.appendChild(rating);
 
-  const comments = document.createElement('p');
-  comments.innerHTML = review.comments;
-  comments.className = 'review-comment';
-  li.appendChild(comments);
+    const comments = document.createElement('p');
+    comments.innerHTML = review.comments;
+    comments.className = 'review-comment';
+    li.appendChild(comments);
 
-  return li;
+    return li;
 }
 
 /**

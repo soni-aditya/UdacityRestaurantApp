@@ -1,4 +1,4 @@
-let cacheName = "v2";
+let cacheName = "main-cache";
 let cacheFiles = [
     './',
     './index.html',
@@ -14,10 +14,12 @@ let cacheFiles = [
     './img/8.jpg',
     './img/9.jpg',
     './img/10.jpg',
+    './img/favicon.png',
     './js/dbhelper.js',
     './js/main.js',
     '/data/restaurants.json',
-    'https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxK.woff2'
+    'https://unpkg.com/leaflet@1.3.1/dist/leaflet.css',
+    'https://unpkg.com/leaflet@1.3.1/dist/leaflet.js'
 ];
 
 self.addEventListener('install',function (e) {
@@ -47,8 +49,8 @@ self.addEventListener('activate',function (e) {
 });
 self.addEventListener('fetch', function(evt) {
     console.log('The service worker is serving the asset.');
-    evt.respondWith(fromCache(evt.request).catch(function () {
-        return fromNetwork(evt.request, 400);
+    evt.respondWith(fromNetwork(evt.request, 400).catch(function () {
+        return fromCache(evt.request);
     }));
 });
 
