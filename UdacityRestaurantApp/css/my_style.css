@@ -102,7 +102,7 @@ Setting breakpoints for the restaurant review page
     border-radius: 2em;
     margin-left: 20px;
 }
-#restaurants-list li h1,#restaurants-list li p{
+#restaurants-list li h2,#restaurants-list li p{
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -162,4 +162,7 @@ Setting breakpoints for the restaurant review page
 }
 .inside .leaflet-control-attribution{
     display: none;
+}
+.inside #breadcrumb{
+    margin-top: 25px; /*since nav is 80px height and h1 is of (25+30)px */
 }
