@@ -106,10 +106,13 @@ Setting breakpoints for the restaurant review page
     padding-left: 15px;
     padding-right: 15px;
 }
-#restaurants-list li a:hover{
+#restaurants-list li a:hover, #restaurants-list li a:focus{
   background-color: darkorange;
 }
-
+select:focus{
+    box-shadow: 1px 3px 1px #f18200;
+    border: 1px solid #f18200;
+}
 /*Writing css for restaurant.html page*/
 .inside #footer{
     width: calc(100% - 50px);   /*50px is subtracted since its the amount of padding we are giving to it*/
