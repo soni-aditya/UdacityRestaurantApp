@@ -14,12 +14,12 @@
 <body>
   <header>
   <nav>
-    <h1 id="main_heading"><a href="/">Restaurant Reviews</a></h1>
+    <h1 id="main_heading" aria-label="Main Heading"><a href="/">Restaurant Reviews</a></h1>
   </nav>
 </header>
 
-  <main id="maincontent">
-    <section id="map-container">
+  <main id="maincontent" aria-label="Main Content">
+    <section id="map-container" role="contentinfo" aria-label="Section with location info">
       <div id="map" role="application" aria-label="Map with restaurant locations"></div>
     </section>
     <section  role="contentinfo" aria-label="Filter Options">
@@ -41,7 +41,7 @@
   <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places&callback=initMap"></script> -->
 
 
-  <footer id="footer">
+  <footer id="footer" aria-label="Footer">
     Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
   </footer>
 
